@@ -3,4 +3,4 @@ project(CPP_BreakCourse)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CPP_BreakCourse fav_number.cpp)
+add_executable(CPP_BreakCourse 1/fav_number.cpp)
