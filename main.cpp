@@ -5,13 +5,14 @@ contents:
  * favorite number
  * room area
  * carpet cleaner
+ * vectors practice
 
 **************************************************************************
 */
 
-
-/* FAVORITE NUMBER -----------------------------------------------------
-# include <iostream>
+// FAVORITE NUMBER -----------------------------------------------------
+/*
+ # include <iostream>
 
 int main(){
     int favorite_number;
@@ -26,8 +27,9 @@ int main(){
 */
 
 
-/* ROOM AREA--------------------------------------------------------------
-# include <iostream>
+// ROOM AREA-------------------------------------------------------------
+/*
+ # include <iostream>
 
 using namespace std;
 
@@ -47,7 +49,8 @@ int main(){
 
 
 // CARPET CLEANER-------------------------------------------------------
-# include <iostream>
+/*
+ # include <iostream>
 
 using namespace std;
 
@@ -79,3 +82,55 @@ int main(){
 
     return 0;
 }
+*/
+
+
+//VECTORS PRACTICE-------------------------------------------------------
+/*
+# include <iostream>
+# include <vector>
+
+using namespace std;
+
+int main(){
+    vector <int> vector1;
+    vector <int> vector2;
+    vector <vector<int>> vector_2d;
+
+    vector1.push_back(10);
+    vector1.push_back(20);
+    cout<<"Vector 1 contains: "<<vector1.at(0)<<", "<<vector1.at(1)<<endl;
+    cout<<"length: "<<vector1.size()<<endl;
+
+    vector2.push_back(100);
+    vector2.push_back(200);
+    cout<<"\nVector 2 contains: "<<vector2.at(0)<<", "<<vector2.at(1)<<endl;
+    cout<<"length: "<<vector2.size()<<endl;
+
+    vector_2d.push_back(vector1);
+    vector_2d.push_back(vector2);
+    cout<<"\nVector 2d contains: "<<endl;
+    cout<<vector_2d.at(0).at(0)<<", "<<vector_2d.at(0).at(1)
+    <<", "<<vector_2d.at(1).at(0)<<", "<<vector_2d.at(1).at(1)<<endl;
+
+    vector1.at(0) = 1000;
+    cout<<"\nAfter change, vector 2d now contains: "<<endl;
+    cout<<vector_2d.at(0).at(0)<<", "<<vector_2d.at(0).at(1)
+        <<", "<<vector_2d.at(1).at(0)<<", "<<vector_2d.at(1).at(1)<<endl;
+    cout<<"\nAfter change, vector 1 now contains: "<<vector1.at(0)<<", "<<vector1.at(1)<<endl;
+
+    return 0;
+}
+ */
+
+
+//next
+/*
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    return 0;
+}
+ */
