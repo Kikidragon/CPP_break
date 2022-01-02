@@ -1,16 +1,17 @@
 /***********************************************************************
 created 12/23/2021 - c++ udemy online course
 contents:
- PROGRAM NAME:                                                 LINES:
- * favorite number
- * room area
- * carpet cleaner
- * vectors practice
+ PROGRAM NAME:____________________________________TOPIC:__________________
+ * favorite number                                I/O
+ * room area                                      variables
+ * carpet cleaner                                 constants / variables
+ * vectors practice                               vectors
+ * provide change                                 operators
 
 **************************************************************************
 */
 
-// FAVORITE NUMBER -----------------------------------------------------
+// FAVORITE NUMBER------------------------------------------------------
 /*
  # include <iostream>
 
@@ -85,7 +86,7 @@ int main(){
 */
 
 
-//VECTORS PRACTICE-------------------------------------------------------
+// VECTORS PRACTICE------------------------------------------------------
 /*
 # include <iostream>
 # include <vector>
@@ -121,16 +122,61 @@ int main(){
 
     return 0;
 }
- */
+*/
 
 
-//next
-/*
+//PROVIDE CHANGE---------------------------------------------------------
 #include <iostream>
+#include <vector>
+#include <cmath>
 
 using namespace std;
 
 int main(){
+    int cents (0);
+    int cents_left;
+    double x;
+    vector <int> change {0,0,0,0,0};
+    // vector index key: 0=dollar 1=quarter 2=dime 3=nickel 4=penny
+
+
+    cout<<"Enter an amount in cents: ";
+    cin>>cents;
+    cents_left = cents;
+    if (cents_left >= 100){
+        x = cents_left / 100;
+        change.at(0) += round(x);
+        //^sets dollars value to chance /100 rounded
+        cents_left = (cents_left % 100);
+        //6sets amount left to what is left over once 100 is divided out
+    }
+    if (cents_left >= 25){
+        x = cents_left / 25;
+        change.at(1) += round(x);
+        cents_left = (cents_left % 25);
+    }
+    if (cents_left >= 10){
+        x = cents_left / 10;
+        change.at(2) += round(x);
+        cents_left = (cents_left % 10);
+    }
+    if (cents_left >= 5){
+        x = cents_left / 5;
+        change.at(3) += round(x);
+        cents_left = (cents_left % 5);
+    }
+    if (cents_left >= 0){
+        change.at(4) += (cents_left);
+    }
+
+    cout<<"\nChange for "<<cents<<" cents:"
+    <<"\nDollars: "<<change.at(0)
+    <<"\nQuarters: "<<change.at(1)
+    <<"\nDimes: "<<change.at(2)
+    <<"\nNickels: "<<change.at(3)
+    <<"\nPennies: "<<change.at(4);
+
     return 0;
+    //I saw the solution I made it way too complicated
+    // haha good practice though :)
 }
- */
