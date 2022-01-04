@@ -3,7 +3,8 @@ created 12/23/2021 - c++ udemy online course
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
- * next
+ * while loop practice                            while loops
+ * range for loop practice                        range based for loops
  * for loop practice                              for loops
  * min max                                        conditional operator
  * grade v2                                       switch statement
@@ -29,16 +30,95 @@ NOTE2: most recent to least recent going down the list
  }
  */
 
-//next
+//WHILE LOOP PRACTICE----------------------------------------------------
+/*
+//class example ch9
 #include <iostream>
 
 using namespace std;
 
 int main(){
+
+    int num (0);
+    cout<<"enter a positive integer - start the countdown:";
+    cin>>num;
+    while (num > 0){
+        cout<<num<<endl;
+        --num; //countdown from the entered number to 0
+    }
+
+    int num1 (0);
+    cout<<"enter a positive integer to count up to:";
+    cin>>num1;
+    int i (1);
+    while (num >= i){
+        cout<<i<<endl;
+        i++; //input a target and count up until it is reached
+    }
+
+    int num2 (0);
+    cout<<"enter an integer less than 100";
+    cin>>num2;
+    while (num2 >= 100) {
+        cout<<"enter an integer less than 100";
+        cin>>num2; //repeat until the number is less than 100
+    }
+    cout<<"thanks";
+
+    bool done (false);
+    int num3 (0);
+    while (!done){
+        cout<<"enter an integer between 1 and 5";
+        cin>>num3;
+        if (num3 <= 1 || num3 >= 5)
+            cout<<"out of range, try again";
+        else{
+            cout<<"thanks";
+            done = true;
+        }//uses a bool as a flag to iterate until the right value entered
+    }
+
     return 0;
 }
+ */
 
+//RANGE FOR LOOP PRACTICE-------------------------------------------------
+/*
+//class example ch9
+#include <iostream>
+#include <vector>
+#include <iomanip>
 
+using namespace std;
+
+int main(){
+
+    int scores[] {10,20,30};
+    for (auto score : scores)
+        cout<<score<<endl; //prints all scores
+
+    vector <double> temps {87.9, 77.9, 80.0, 72.5};
+    double average_temp (0);
+    double total (0);
+    for (auto temp : temps)
+        total += temp;
+    if (temps.size() != 0)
+        average_temp = total/temps.size();
+    cout<<fixed<<setprecision(1);
+    cout<<"avg temp is "<<average_temp<<endl; //finds and prints average
+
+    for (auto val: {1,2,3,4,5})
+        cout<<val<<endl;
+
+    for (auto c: "this is a test")
+        if (c == ' ')
+            cout<<"\t";
+        else
+            cout<<c; //prints replacing space with tabs
+
+    return 0;
+}
+*/
 
 //FOR LOOP PRACTICE------------------------------------------------------
 /*
