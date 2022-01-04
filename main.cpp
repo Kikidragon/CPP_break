@@ -3,6 +3,10 @@ created 12/23/2021 - c++ udemy online course
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
+ * next
+ * histogram                                      nested loops
+ * nested loops practice                          nested loops
+ * menu                                           do while loops
  * while loop practice                            while loops
  * range for loop practice                        range based for loops
  * for loop practice                              for loops
@@ -28,6 +32,209 @@ NOTE2: most recent to least recent going down the list
  int main(){
      return 0;
  }
+ */
+
+//next
+//challenge ch9
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+    char selection {};
+    vector <int> vec {};
+
+    do {
+        cout<<"---------------------------------";
+        cout<<"\nMENU:";
+        cout<<"\nP - Print numbers"<<endl;
+        cout<<"A - Add a number"<<endl;
+        cout<<"M - Display mean"<<endl;
+        cout<<"S - Display smallest number"<<endl;
+        cout<<"L - Display largest number"<<endl;
+        cout<<"Q - Quit"<<endl;
+        cout<<"\nEnter your selection:";
+        cin>>selection;
+        switch (selection){
+            case 'p':
+            case 'P':
+            {
+                cout<<"\nP - Print numbers:"<<endl;
+                if (vec.size() > 0){
+                    for (auto val: vec){
+                        cout<<val<<endl;
+                    }
+                } else{
+                    cout<<"No numbers found"<<endl;
+                }
+
+                break;
+            }
+            case 'a':
+            case 'A':
+            {
+                int num {};
+                cout<<"\nA - Add a number:"<<endl;
+                cout<<"Input an integer:";
+                cin>>num;
+                vec.push_back(num);
+                cout<<num<<" added."<<endl;
+                break;
+            }
+            case 'm':
+            case 'M':
+            {
+                double sum {};
+                double average {};
+                cout<<"\nM - Display mean:"<<endl;
+                if (vec.size() > 0) {
+                    for (auto val: vec){
+                        sum += val;
+                    }
+                    average = sum / vec.size();
+                    cout<<average<<endl;
+                } else{
+                    cout<<"No numbers found"<<endl;
+                }
+                break;
+            }
+            case 's':
+            case 'S':
+            {
+                int min (10000);
+                cout<<"\nS - Display smallest number:"<<endl;
+                if (vec.size() > 0){
+                    for (auto val: vec) {
+                        if (val < min)
+                            min = val;
+                    }
+                    cout<<min<<endl;
+                } else{
+                    cout<<"No numbers found"<<endl;
+                }
+                break;
+            }
+            case 'l':
+            case 'L':
+            {
+                int max (0);
+                cout<<"\nL - Display largest number:"<<endl;
+                if (vec.size() > 0){
+                    for (auto val: vec) {
+                        if (val > max)
+                            max = val;
+                    }
+                    cout<<max<<endl;
+                } else {
+                    cout<<"No numbers found"<<endl;
+                }
+                break;
+            }
+            case 'q':
+            case 'Q':
+                cout<<"Goodbye"; break;
+            default: cout<<"Invalid choice, try again."<<endl;
+        }
+    } while (selection != 'q' && selection != 'Q');
+
+    return 0;
+}
+
+// HISTOGRAM--------------------------------------------------------------
+/*
+//class example ch9
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+    int num_items (0);
+    vector <int> data {};
+
+    cout<<"How many items of data do you have?";
+    cin>>num_items; // # times to iterate
+
+    for (int i (1); i <= num_items; i++){
+        int data_item (0);
+        cout<<"Enter data item "<<i<<" :";
+        cin>>data_item;
+        data.push_back(data_item);
+    } //adds each item to the vector
+
+    cout<<"\nDisplaying histogram:\n";
+    for (auto val: data){
+        for (int i(1); i<=val; i++){
+            cout<<'*'; //prints the number of * that is the value
+        }
+        cout<<endl; //space in between values
+    }
+
+    return 0;
+}
+ */
+
+// NESTED LOOPS PRACTICE-------------------------------------------------
+/*
+//class example ch9
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+
+    for (int num (1); num <=10; num++){
+        for (int num1 (1); num1 <=10; num1++){
+            cout<<num<<"*"<<num1<<"="<<num*num1;
+            cout<<((num1 *1== 10) ? "\n\n" : "   ");
+        } //10x10 multiplication table
+    }
+
+    vector<vector<int>> vector_2d{
+            {1,2,3}, {10,20,30,40}, {100,200,300,400,500}
+    };
+    for (const auto& vec: vector_2d) {
+        for (auto val: vec) {
+            cout << val << " ";
+        } // print out all values of a multidimensional vector easily
+        cout << endl;
+    }
+    return 0;
+}
+ */
+
+// MENU------------------------------------------------------------------
+/*
+//class example ch9
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    char selection {};
+    do {
+        cout<<"\n---------------------------------";
+        cout<<"\nMENU:";
+        cout<<"\n1. do this"<<endl;
+        cout<<"2. do that"<<endl;
+        cout<<"3. do something else"<<endl;
+        cout<<"Q. quit"<<endl;
+        cout<<"\nEnter your selection:";
+        cin>>selection;
+        switch (selection){
+            case '1': cout<<"you selected 1: do this"; break;
+            case '2': cout<<"you selected 2: do that"; break;
+            case '3': cout<<"you selected 3: do something else"; break;
+            case 'q':
+            case 'Q':
+                cout<<"goodbye"; break;
+            default: cout<<"invalid choice";
+        }
+    } while (selection != 'q' && selection != 'Q'); //continue until q
+    return 0;
+}
  */
 
 //WHILE LOOP PRACTICE----------------------------------------------------
