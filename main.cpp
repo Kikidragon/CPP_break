@@ -37,7 +37,7 @@ NOTE2: most recent to least recent going down the list
  */
 
 //C++-STYLE STRING PRACTICE----------------------------------------------
-
+/*
 //class example ch10
 #include <iostream>
 #include <iomanip>
@@ -131,7 +131,7 @@ int main(){
 
     return 0;
 }
-
+*/
 
 // C-STYLE STRING PRACTICE------------------------------------------------
 /*
