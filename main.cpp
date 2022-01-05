@@ -3,6 +3,7 @@ created 12/23/2021 - c++ udemy online course
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
+ * encryption cypher                                    strings (all)
  * c++-style string practice                      c++-style strings
  * c-style string practice                        c-style strings
  * full menu                                      looping (all)
@@ -35,6 +36,77 @@ NOTE2: most recent to least recent going down the list
      return 0;
  }
  */
+
+// ENCRYPTION CIPHER-------------------------------------------------------
+//
+//challenge ch10
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+    string message {};
+    string alphabet {"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"};
+    string alphakey {"XZNLWEBGJHQDYVTKFUOMPCIASRxznlwebgjhqdyvtkfoumpciasr9876543210"};
+    char selection {};
+
+    cout<<"WELCOME TO THE MESSAGE ENCRYPTION PROGRAM!";
+    do {
+        cout<<"\n------------------------------------------------"<<endl;
+        cout<<"OPTIONS:" << endl;
+        cout<<"1. Encrypt a message" << endl;
+        cout<<"2. Decipher a message" << endl;
+        cout<<"Q. Quit" << endl;
+        cout<<"Selection:";
+        cin>>selection;
+        switch(selection){
+            case '1':
+            {
+                cout<<"Enter a secret message (end with %):";
+                getline(cin, message, '%');
+                cout<<"Your encrypted message is:\n";
+                for (auto i: message){
+                    if (isalnum(i)){
+                        //find i in alphabet and
+                        // swap with same index in alphakey
+                        cout<<alphakey[alphabet.find(i)];
+                    }else if (isspace(i)){
+                        cout<<" ";
+                    }else{
+                        continue;
+                    }
+                }
+                break;
+            }
+            case '2':
+            {
+                cout<<"Enter an encrypted message (end with %):";
+                getline(cin, message, '%');
+                cout<<"Your deciphered message is:\n";
+                for (auto i: message){
+                    if (isalnum(i)){
+                        //find i in alphakey and
+                        // swap with same index in alphabet
+                        cout<<alphabet[alphakey.find(i)];
+                    }else if (isspace(i)){
+                        cout<<" ";
+                    }else{
+                        continue;
+                    }
+                }
+                break;
+            }
+            case 'q':
+            case 'Q':
+                cout<<"goodbye!"<<endl; break;
+            default:
+                cout<<"\ninvalid option, try again"<<endl; break;
+        }
+    }while (selection != 'q' && selection != 'Q');
+    return 0;
+}
+
 
 //C++-STYLE STRING PRACTICE----------------------------------------------
 /*
