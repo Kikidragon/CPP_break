@@ -3,7 +3,9 @@ created 12/23/2021 - c++ udemy online course
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
- * next
+ * c++-style string practice                      c++-style strings
+ * c-style string practice                        c-style strings
+ * full menu                                      looping (all)
  * histogram                                      nested loops
  * nested loops practice                          nested loops
  * menu                                           do while loops
@@ -34,7 +36,159 @@ NOTE2: most recent to least recent going down the list
  }
  */
 
-//next
+//C++-STYLE STRING PRACTICE----------------------------------------------
+
+//class example ch10
+#include <iostream>
+#include <iomanip>
+#include <string>
+
+using namespace std;
+
+int main(){
+    string s0;
+    string s1 {"Apple"};
+    string s2 {"Banana"};
+    string s3 {"Kiwi"};
+    string s4 {"apple"};
+    string s5 {s1}; // Apple
+    string s6 {s1, 0, 3}; // App
+    string s7 (10, 'X'); // XXXXXXXXXX
+
+    cout<<"INITIALIZATIONS: "<<endl;
+    cout<<"s0: "<<s0<<endl;
+    cout<<"s1: "<<s1<<endl;
+    cout<<"s2: "<<s2<<endl;
+    cout<<"s3: "<<s3<<endl;
+    cout<<"s4: "<<s4<<endl;
+    cout<<"s5: "<<s5<<endl;
+    cout<<"s6: "<<s6<<endl;
+    cout<<"s7: "<<s7<<endl;
+
+    cout<<"\nCOMPARISONS: "<<endl;
+    cout<<boolalpha;
+    cout<<s1<<" == "<<s5<<" : "<<(s1 == s5)<<endl; //true
+    cout<<s1<<" == "<<s2<<" : "<<(s1 == s2)<<endl; //false
+    cout<<s1<<" != "<<s2<<" : "<<(s1 != s2)<<endl; //true
+    cout<<s1<<" < "<<s2<<" : "<<(s1 < s2)<<endl; //true
+    cout<<s2<<" > "<<s1<<" : "<<(s2 > s1)<<endl; //true
+    cout<<s4<<" < "<<s5<<" : "<<(s4<s5)<<endl; //false
+    cout<<s1<<" == "<<"Apple"<<" : "<<(s1=="Apple")<<endl; //true
+
+    cout<<"\nASSIGNMENTS: "<<endl;
+    s1 = "Watermelon";
+    cout<<"s1 is now: "<<s1<<endl; //watermelon
+    s2 = s1;
+    cout<<"s2 is now: "<<s2<<endl; //watermelon
+    s3 = "Frank";
+    cout<<"s3 is now: "<<s3<<endl; //frank
+    s3[0] = 'C';
+    cout<<"s3 change first letter: "<<s3<<endl; //crank
+    s3.at(0) = 'P';
+    cout<<"s3 change first letter again: "<<s3<<endl; //prank
+
+    cout<<"\nCONCATENATION: "<<endl;
+    s3 = "Watermelon";
+    s3 = s5 + " and " + s2 +" juice"; //apple and banana juice
+    cout<<"s3 is now: "<<s3<<endl;
+
+    cout<<"\nLOOPING: "<<endl;
+    s1 = "Apple";
+    for (size_t i {0}; i<s1.length(); i++)
+        cout<<s1.at(i);
+    cout<<endl;
+    for (char c: s1)
+        cout<<c;
+    cout<<endl;
+
+    cout<<"\nSUBSTRING: "<<endl;
+    s1 = "This is a test";
+    cout<<s1.substr(0,4)<<endl; //This
+    cout<<s1.substr(5,2)<<endl; //is
+    cout<<s1.substr(10,4)<<endl; //test
+
+    cout<<"\nERASE: "<<endl;
+    s1 = "This is a test";
+    s1.erase(0,5); //erase This
+    cout<<"s1 is now: "<<s1<<endl;
+
+    cout<<"\nGETLINE: "<<endl;
+    string full_name {};
+    cout<<"Enter your full name:";
+    getline(cin, full_name);
+    cout<<"\nYour full name is "<<full_name<<endl;
+
+    cout<<"\nFIND: "<<endl;
+    s1 = "The secret word is Boo";
+    string word;
+    cout<<"Enter the word to find:";
+    cin>>word;
+    size_t position = s1.find(word);
+    if (position != string::npos)
+        cout<<"Found "<<word<<" at position "<<position<<endl;
+    else
+        cout<<"Sorry, "<<word<<" not found"<<endl;
+
+    return 0;
+}
+
+
+// C-STYLE STRING PRACTICE------------------------------------------------
+/*
+//class example ch10
+#include <iostream>
+#include <cstring>
+#include <cctype>
+
+using namespace std;
+
+int main(){
+    char first_name[20] {};
+    char last_name[20] {};
+    char full_name[50] {};
+    char full_name1 [50] {};
+    char temp[50] {};
+
+    cout<<"Enter your first name:";
+    cin>>first_name;
+    cout<<"Enter your last name:";
+    cin>>last_name;
+
+    cout<<"Hello "<<first_name
+    <<"! Your first name has "<<strlen(first_name)<<" characters"
+    <<"\nand your last name has "<<strlen(last_name)<<" characters.";
+    strcpy(full_name, first_name);
+    strcat(full_name, " ");
+    strcat(full_name, last_name);
+    cout<<"\nand your full name is "<<full_name;
+    cout<<"\n";
+
+    cout<<"Enter your full name:";
+    cin.getline(full_name1, 50);
+    cout<<"\nYour full name is "<<full_name1<<endl;
+    strcpy(temp, full_name1);
+    if(strcmp(temp, full_name1)==0)
+        cout<<temp<<" and "<<full_name1<<" are the same";
+    else
+        cout<<temp<<" and "<<full_name1<<" are different";
+    for (size_t i{0}; i<strlen(full_name1);i++){
+        if (isalpha(full_name1[i])){
+            full_name1[i] = toupper(full_name1[i]);
+        }
+    }
+    cout<<"\nbut ";
+    if(strcmp(temp, full_name1)==0)
+        cout<<temp<<" and "<<full_name1<<" are the same";
+    else
+        cout<<temp<<" and "<<full_name1<<" are different";
+
+
+    return 0;
+}
+ */
+
+// FULL MENU-------------------------------------------------------------
+/*
 //challenge ch9
 #include <iostream>
 #include <vector>
@@ -102,7 +256,7 @@ int main(){
             case 's':
             case 'S':
             {
-                int min (10000);
+                int min (9999999);
                 cout<<"\nS - Display smallest number:"<<endl;
                 if (vec.size() > 0){
                     for (auto val: vec) {
@@ -140,6 +294,7 @@ int main(){
 
     return 0;
 }
+ */
 
 // HISTOGRAM--------------------------------------------------------------
 /*
