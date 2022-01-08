@@ -3,7 +3,11 @@ created 12/23/2021 - c++ udemy online course
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
- * encryption cypher                                    strings (all)
+ * next
+ * calculate cost                                 functions
+ * function practice                              functions
+ * letter pyramid (A)                             strings / loops
+ * encryption cypher (C)                          strings (all)
  * c++-style string practice                      c++-style strings
  * c-style string practice                        c-style strings
  * full menu                                      looping (all)
@@ -22,7 +26,7 @@ contents:            (C) : challenge
  * room area (C)                                  variables
  * favorite number (C)                            I/O
 
-NOTE: (C) = challenge, else is in class practice examples
+NOTE: (C) = challenge, (A) = assignment, else in class practice examples
 NOTE2: most recent to least recent going down the list
 **************************************************************************
 */
@@ -37,8 +41,168 @@ NOTE2: most recent to least recent going down the list
  }
  */
 
-// ENCRYPTION CIPHER-------------------------------------------------------
+//next
 //
+//class example ch11
+#include <iostream>
+
+using namespace std;
+
+int main(){
+    return 0;
+}
+
+
+// CALCULATE COST-------------------------------------------------------
+/*
+//class example ch11
+#include <iostream>
+
+double calc_cost(double base_cost, double tax_rate=0.06, double shipping=3.50);
+double calc_cost(double base_cost, double tax_rate, double shipping){
+    return base_cost + ((base_cost*tax_rate) + shipping);
+}
+double calc_cost_v2(double base_cost, double shipping=3.50, double tax_rate=0.06);
+double calc_cost_v2(double base_cost, double shipping, double tax_rate){
+    return base_cost + ((base_cost*tax_rate) + shipping);
+}
+
+using namespace std;
+
+int main(){
+    double cost (0);
+    double tax (0);
+    double ship (0);
+    char choice {};
+    char choice2 {};
+
+    cout<<"enter base cost:";
+    cin>>cost;
+    cout<<"is tax rate 6% (y/n):";
+    cin>>choice;
+    cout << "is shipping $3.50 (y/n):";
+    cin >> choice2;
+    if ((choice == 'y' || choice == 'Y') && (choice2 == 'y' || choice2 == 'Y')) {
+        //normal tax and shipping rate
+        cout << "price: $" << calc_cost(cost);
+    }
+    else if ((choice != 'y' && choice != 'Y') && (choice2 == 'y' || choice2 == 'Y')){
+        //different tax and normal shipping rate
+        cout << "enter tax (decimal form):";
+        cin >> tax;
+        cout << "price: $" << calc_cost(cost, tax);
+    }
+    else if ((choice2 != 'y' && choice2 != 'Y') && (choice == 'y' || choice == 'Y')){
+        //normal tax and different shipping rate
+        cout << "enter shipping:";
+        cin >> ship;
+        cout << "price: $" << calc_cost_v2(cost, ship);
+    }
+    else if ((choice2 != 'y' && choice2 != 'Y') && (choice != 'y' && choice != 'Y')) {
+       //different tax and different shipping
+        cout << "enter tax (decimal form):";
+        cin >> tax;
+        cout << "enter shipping:";
+        cin >> ship;
+        cout << "price: $" << calc_cost(cost, tax, ship);
+    }
+    else{
+        cout<<"error";
+    }
+
+
+    return 0;
+}
+*/
+
+// FUNCTION PRACTICE-----------------------------------------------------
+/*
+//class example ch11
+#include <iostream>
+
+using namespace std;
+
+const double pi (3.1415);
+double calc_area_circle(double radius){
+    return pi*radius*radius;
+}
+
+double calc_volume_cylinder(double radius, double height){
+    return calc_area_circle(radius)*height;
+}
+
+void area_circle(){
+    double radius(0);
+    cout<<"\nEnter radius of circle:";
+    cin>>radius;
+    cout<<"The area of a circle with radius "<<radius
+    <<" is: "<<calc_area_circle(radius)<<endl;
+}
+
+void volume_cylinder(){
+    double radius (0);
+    double height (0);
+    cout<<"\nEnter radius of cylinder:";
+    cin>>radius;
+    cout<<"Enter height of cylinder:";
+    cin>>height;
+    cout<<"The volume of a cylinder with radius "<<radius
+    <<" and height "<<height<<" is: "
+    <<calc_volume_cylinder(radius, height)<<endl;
+}
+
+int main(){
+    cout<<"FUNCTIONS PRACTICE:";
+    area_circle();
+    volume_cylinder();
+    return 0;
+}
+ */
+
+// LETTER PYRAMID---------------------------------------------------------
+/*
+//assignment ch10
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    string input {};
+    int spaces (0);
+
+    cout<<"Enter the string to display as a pyramid:";
+    getline(cin, input);
+
+
+    for (int i (0); i < input.length(); i++){
+        spaces = input.length() - i;
+        while (spaces != 0) {
+            cout << " ";
+            spaces--;
+            //^spaces before
+        }
+        for (int j (0); j < i; j++){
+            cout<<input.at(j);
+            //^up to center
+        }
+        cout<<input[i];
+        //^center
+        for (int k (i-1); k >=0; k--){
+            auto y = static_cast<size_t>(k); // what is happening here???
+            cout<<input.at(y);
+            //^reverse after center
+        }
+        cout<<endl;
+    }
+
+    return 0;
+}
+ */
+
+// ENCRYPTION CIPHER-------------------------------------------------------
+/*
 //challenge ch10
 #include <iostream>
 #include <string>
@@ -106,7 +270,7 @@ int main(){
     }while (selection != 'q' && selection != 'Q');
     return 0;
 }
-
+*/
 
 //C++-STYLE STRING PRACTICE----------------------------------------------
 /*
