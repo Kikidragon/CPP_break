@@ -1,16 +1,20 @@
 /***********************************************************************
-created 12/23/2021 - c++ udemy online course
+created 12/23/2021 - c++ udemy online course - Claire DeVlieger
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
  * next
- * calculate cost                                 functions
+ * recursion practice                             functions recursion
+ * pass by ref practice                           functions pass by ref
+ * array functions                                functions with arrays
+ * print overload                                 function overload
+ * calculate cost                                 function arguments
  * function practice                              functions
  * letter pyramid (A)                             strings / loops
  * encryption cypher (C)                          strings (all)
  * c++-style string practice                      c++-style strings
  * c-style string practice                        c-style strings
- * full menu                                      looping (all)
+ * full menu (C)                                  looping (all)
  * histogram                                      nested loops
  * nested loops practice                          nested loops
  * menu                                           do while loops
@@ -43,7 +47,8 @@ NOTE2: most recent to least recent going down the list
 
 //next
 //
-//class example ch11
+//challenge ch11
+//make ch9 challenge use functions (full menu)
 #include <iostream>
 
 using namespace std;
@@ -52,6 +57,169 @@ int main(){
     return 0;
 }
 
+
+// RECURSION PRACTICE----------------------------------------------------
+/*
+//class example ch11
+#include <iostream>
+
+using namespace std;
+
+unsigned long long factorial(unsigned long long);
+unsigned long long fibonacci(unsigned long long);
+
+unsigned long long factorial(unsigned long long n){
+    if (n==0)
+        return 1; //base case
+    return n * factorial(n-1); //recursion
+}
+
+unsigned long long fibonacci(unsigned long long n){
+    if (n <= 1)
+        return n; //base case
+    return fibonacci(n-1) + fibonacci(n-2); //recursion
+}
+
+
+int main(){
+    cout<<factorial(3); //6
+    cout<<fibonacci(5); //5
+    return 0;
+}
+ */
+
+// PASS BY REF PRACTICE--------------------------------------------------
+/*
+//class example ch11
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+void pass_ref1(int &num);
+void pass_ref2(string &s);
+void pass_ref3(vector<string> &v);
+void print_vec(const vector<string> &v);
+
+void pass_ref1(int &num){
+    num = 1000;
+}
+void pass_ref2(string &s){
+    s = "changed";
+}
+void pass_ref3(vector<string> &v){
+    v.clear();
+}
+void print_vec(const vector<string> &v){
+    for (auto s:v)
+        cout<<s<<' ';
+    cout<<endl;
+}
+
+int main(){
+    int num (10);
+    int another_num(20);
+    string name ("Claire");
+    vector <string> colors{"purple", "blue", "teal"};
+
+
+    cout<<"num before pass by ref 1: "<<num<<endl;
+    pass_ref1(num);
+    cout<<"num after pass by ref 1: "<<num<<endl;
+
+    cout<<"name before pass by ref 2: "<<name<<endl;
+    pass_ref2(name);
+    cout<<"name after pass by ref 2: "<<name<<endl;
+
+    cout<<"vector before pass by ref 3: ";
+    print_vec(colors);
+    pass_ref3(colors);
+    cout<<"vector after pass by ref 3: ";
+    print_vec(colors);
+    return 0;
+}
+*/
+
+// ARRAY FUNCTIONS--------------------------------------------------------
+/*
+//class example ch11
+#include <iostream>
+
+using namespace std;
+
+void print_array(const int arr[], size_t size);
+void set_array(int arr[], size_t size, int value);
+//const makes it not change array by accident
+void print_array(const int arr[], size_t size){
+    for (size_t i{0}; i<size; i++)
+        cout<<arr[i]<<" "; //prints contents of array
+    cout<<endl;
+}
+void set_array(int arr[], size_t size, int value){
+    for (size_t i{0}; i<size; i++)
+        arr[i] = value; //changes value of array - causes problems
+}
+
+int main(){
+    int my_scores[] {100, 98, 90, 86, 84};
+
+    print_array(my_scores, 5); //prints array values
+    set_array(my_scores, 5, 100); //changes all to 100
+    print_array(my_scores, 5); //prints 5 100s
+
+    return 0;
+}
+*/
+
+// PRINT OVERLOAD--------------------------------------------------------
+/*
+//class example ch11
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+void print(int);
+void print(double);
+void print(string);
+void print(string, string);
+void print(vector<string>);
+
+void print (int num){
+    cout<<"printing int: "<<num<<endl;
+}
+void print (double num) {
+    cout<<"printing double: "<<num<<endl;
+}
+void print (string s){
+    cout<<"printing string: "<<s<<endl;
+}
+void print (string s, string t){
+    cout<<"printing 2 strings: "<<s<<" and "<<t<<endl;
+}
+void print (vector<string> v){
+    cout<<"printing vector of strings: ";
+    for (auto s: v)
+        cout<<s + ' ';
+    cout<<endl;
+    }
+
+int main(){
+    print(100); //int
+    print('A'); //ascii int
+    print(123.5); //double
+    print(123.3F); //float -> double
+    print("C-style string"); //string
+    string s {"C++ style string"};
+    print(s); //string
+    print("C-style string", s); //2 strings
+    vector <string> colors{"purple", "blue", "teal"};
+    print(colors); //vector
+    return 0;
+}
+*/
 
 // CALCULATE COST-------------------------------------------------------
 /*
