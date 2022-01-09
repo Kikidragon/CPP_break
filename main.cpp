@@ -4,6 +4,7 @@ contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
  * next
+ * functions full menu (C)                        functions (all)
  * recursion practice                             functions recursion
  * pass by ref practice                           functions pass by ref
  * array functions                                functions with arrays
@@ -47,8 +48,7 @@ NOTE2: most recent to least recent going down the list
 
 //next
 //
-//challenge ch11
-//make ch9 challenge use functions (full menu)
+//class example ch12
 #include <iostream>
 
 using namespace std;
@@ -57,6 +57,125 @@ int main(){
     return 0;
 }
 
+
+// FUNCTIONS FULL MENU-------------------------------------------------
+/*
+//challenge ch11
+//make ch9 challenge but use functions (full menu)
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void menu ();
+void print (const vector <int>&);
+void add (vector <int>&);
+void avg (const vector <int>&);
+void min (const vector <int>&);
+void max (const vector <int>&);
+
+void menu(){
+    cout<<"\nMENU:";
+    cout<<"\nP - Print numbers"<<endl;
+    cout<<"A - Add a number"<<endl;
+    cout<<"M - Display mean"<<endl;
+    cout<<"S - Display smallest number"<<endl;
+    cout<<"L - Display largest number"<<endl;
+    cout<<"Q - Quit"<<endl;
+    cout<<"\nEnter your selection:";
+}
+void print (const vector <int>& vec){
+    cout<<"\nP - Print numbers:"<<endl;
+    if (vec.size() > 0){
+        for (auto val: vec){
+            cout<<val<<endl;
+        }
+    } else{
+        cout<<"No numbers found"<<endl;
+    }
+}
+void add (vector <int>& vec){
+    int num {};
+    cout<<"\nA - Add a number:"<<endl;
+    cout<<"Input an integer:";
+    cin>>num;
+    vec.push_back(num); //fixme
+    cout<<num<<" added."<<endl;
+}
+void avg (const vector <int>& vec){
+    double sum {};
+    double average {};
+    cout<<"\nM - Display mean:"<<endl;
+    if (vec.size() > 0) {
+        for (auto val: vec){
+            sum += val;
+        }
+        average = sum / vec.size();
+        cout<<average<<endl;
+    } else{
+        cout<<"No numbers found"<<endl;
+    }
+}
+void min (const vector <int>& vec){
+    int min (9999999);
+    cout<<"\nS - Display smallest number:"<<endl;
+    if (vec.size() > 0){
+        for (auto val: vec) {
+            if (val < min)
+                min = val;
+        }
+        cout<<min<<endl;
+    } else{
+        cout<<"No numbers found"<<endl;
+    }
+}
+void max (const vector <int>& vec){
+    int max (0);
+    cout<<"\nL - Display largest number:"<<endl;
+    if (vec.size() > 0){
+        for (auto val: vec) {
+            if (val > max)
+                max = val;
+        }
+        cout<<max<<endl;
+    } else {
+        cout<<"No numbers found"<<endl;
+    }
+}
+
+int main(){
+    char selection {};
+    vector <int> vec {};
+
+    do{
+        menu();
+        cin>>selection;
+        switch (selection){
+            case 'P':
+            case 'p':
+                print(vec); break;
+            case 'A':
+            case 'a':
+                add(vec); break;
+            case 'M':
+            case 'm':
+                avg(vec); break;
+            case 'S':
+            case 's':
+                min(vec); break;
+            case 'L':
+            case 'l':
+                max(vec); break;
+            case 'Q':
+            case 'q':
+                cout<<"goodbye"<<endl; break;
+            default: cout<<"Invalid choice, try again."<<endl;
+
+        }
+    } while (selection != 'q' && selection != 'Q');
+    return 0;
+}
+*/
 
 // RECURSION PRACTICE----------------------------------------------------
 /*
