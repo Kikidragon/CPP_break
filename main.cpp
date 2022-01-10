@@ -3,7 +3,10 @@ created 12/23/2021 - c++ udemy online course - Claire DeVlieger
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
- * next
+ * pointer arithmetic                             pointers
+ * memory allocation                              memory / array pointers
+ * pointer dereferencing                          pointers
+ * pointers practice                              pointers
  * functions full menu (C)                        functions (all)
  * recursion practice                             functions recursion
  * pass by ref practice                           functions pass by ref
@@ -38,6 +41,8 @@ NOTE2: most recent to least recent going down the list
 // STARTER--------------------------------------------------------------
 /*
  #include <iostream>
+ #include <vector>
+ #include <string>
 
  using namespace std;
 
@@ -50,6 +55,8 @@ NOTE2: most recent to least recent going down the list
 //
 //class example ch12
 #include <iostream>
+#include <vector>
+#include <string>
 
 using namespace std;
 
@@ -57,6 +64,189 @@ int main(){
     return 0;
 }
 
+
+// POINTER ARITHMETIC---------------------------------------------------
+/*
+//class example ch12
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    int scores[] {100,95,89,68,-1};
+    int *score_ptr{scores};
+
+    while (*score_ptr != -1){
+        cout<<*score_ptr<<' ';
+        score_ptr++; //points to next value in scores
+    }
+    cout<<endl;
+    score_ptr = scores;
+    while (*score_ptr != -1) {
+        cout << *score_ptr++ << ' '; //same as ^ loop
+    }
+    cout<<'\n';
+
+    string s1 {"frank"};
+    string s2 {"frank"};
+    string s3 {"james"};
+    string *p1 {&s1}; //frank
+    string *p2 {&s2}; //frank
+    string *p3 {&s1}; //frank
+    cout<<boolalpha;
+    cout<<p1<<"=="<<*p2<<":"<<(*p1 == *p2)<<endl; //false
+    cout<<p1<<"=="<<*p3<<":"<<(*p1 == *p3)<<endl; //true
+    cout<<*p1<<"=="<<*p2<<":"<<(*p1 == *p2)<<endl; //true
+    cout<<*p1<<"=="<<*p3<<":"<<(*p1 == *p3)<<endl; //true
+    p3 = &s3; //point to james
+    cout<<*p1<<"=="<<*p3<<":"<<(*p1 == *p3)<<endl; //false
+
+    char name[] {"frank"};
+    char *char_ptr1 {nullptr};
+    char *char_ptr2 {nullptr};
+    char_ptr1 = &name[0]; //f
+    char_ptr2 = &name[3]; //n
+    cout<<"\nin "<<name<<", "<<*char_ptr2<<" is "
+    <<(char_ptr2-char_ptr1)<<" characters from "<<*char_ptr1<<endl;
+
+    return 0;
+}
+*/
+
+// MEMORY ALLOCATION----------------------------------------------------
+/*
+//class example ch12
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    size_t size(0);
+    double *temp_ptr {nullptr};
+
+    cout<<"how many temps:";
+    cin>>size;
+    temp_ptr = new double[size]; //allocate pointers to heap
+    cout<<temp_ptr<<endl;
+    delete [] temp_ptr; //remove allocation
+
+    int scores[] {100,95,89};
+    cout<<"\nvalue of scores: "<<scores<<endl;
+    int *score_ptr {scores};
+    cout<<"value of score_ptr: "<<score_ptr<<endl;
+    cout<<"\nARRAY SUBSCRIPT NOTATION:"<<endl;
+    cout<<scores[0]<<' ';
+    cout<<scores[1]<<' ';
+    cout<<scores[2]<<' ';
+    cout<<"\nPOINTER SUBSCRIPT NOTATION:"<<endl;
+    cout<<score_ptr[0]<<' ';
+    cout<<score_ptr[1]<<' ';
+    cout<<score_ptr[2]<<' ';
+    cout<<"\nPOINTER OFFSET NOTATION:"<<endl;
+    cout<<*score_ptr<<' ';
+    cout<<*(score_ptr + 1)<<' ';
+    cout<<*(score_ptr + 2)<<' ';
+    cout<<"\nARRAY OFFSET NOTATION:"<<endl;
+    cout<<*scores<<' ';
+    cout<<*(scores + 1)<<' ';
+    cout<<*(scores + 2)<<' ';
+
+    return 0;
+}
+*/
+
+// POINTERS DEREFERENCING-----------------------------------------------
+/*
+//class example ch12
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    int score (100);
+    int *score_ptr {&score};
+    cout<<*score_ptr<<endl;
+
+    *score_ptr = 200; //changes value of score to 200
+    cout<<*score_ptr<<endl;
+    cout<<score<<endl;
+
+    double high_temp (100.7);
+    double low_temp (37.4);
+    double *temp_ptr (&high_temp);
+    cout<<"\n"<<*temp_ptr<<endl;
+    temp_ptr = &low_temp; //changes to point to low_temp variable
+    cout<<*temp_ptr<<endl;
+
+    string name {"frank"};
+    string *string_ptr {&name};
+    cout<<"\n"<<*string_ptr<<endl;
+    name = "james"; //changes value of name to james
+    cout<<*string_ptr<<endl;
+
+    vector <string> colors {"purple", "blue", "teal"};
+    vector <string> *vector_ptr {nullptr};
+    vector_ptr = &colors;
+    cout<<"\nfirst color: "<<(*vector_ptr).at(0)<<endl;
+    cout<<"colors: ";
+    for (auto color: *vector_ptr)
+        cout<<color<<' ';
+    cout<<endl;
+    return 0;
+}
+*/
+
+// POINTERS PRACTICE-----------------------------------------------------
+/*
+//class example ch12
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    int num (10);
+    cout<<"value of num is "<<num<<endl;
+    cout<<"sizeof num is "<<sizeof num<<endl;
+    cout<<"address of num is "<<&num<<endl;
+
+    int *p;
+    cout<<"\nvalue of p is "<<p<<endl;
+    cout<<"address of p is "<<&p<<endl;
+    cout<<"sizeof p is "<<sizeof p<<endl;
+
+    p = nullptr;
+    cout<<"\nvalue of p is now "<<p<<endl;
+
+    int *p1 {nullptr};
+    double *p2 {nullptr};
+    unsigned long long *p3 {nullptr};
+    vector <string> *p4 {nullptr};
+    string *p5 {nullptr};
+
+    cout<<"\nsizeof p1 (int) is "<<sizeof p1<<endl;
+    cout<<"sizeof p2 (double) is "<<sizeof p2<<endl;
+    cout<<"sizeof p3 (unsigned long long) is "<<sizeof p3<<endl;
+    cout<<"sizeof p4 (string vector) is "<<sizeof p4<<endl;
+    cout<<"sizeof p5 (string) is "<<sizeof p5<<endl;
+
+    int score (10);
+    int *score_ptr {nullptr};
+    score_ptr = &score;
+    cout<<"\nvalue of score is "<<score<<endl;
+    cout<<"address of score is "<<&score<<endl;
+    cout<<"value of score_ptr is "<<score_ptr<<endl;
+
+    return 0;
+}
+*/
 
 // FUNCTIONS FULL MENU-------------------------------------------------
 /*
@@ -99,7 +289,7 @@ void add (vector <int>& vec){
     cout<<"\nA - Add a number:"<<endl;
     cout<<"Input an integer:";
     cin>>num;
-    vec.push_back(num); //fixme
+    vec.push_back(num);
     cout<<num<<" added."<<endl;
 }
 void avg (const vector <int>& vec){
