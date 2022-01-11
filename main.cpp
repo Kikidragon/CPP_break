@@ -3,6 +3,11 @@ created 12/23/2021 - c++ udemy online course - Claire DeVlieger
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
+ * next
+ * class basics                                   oop - classes
+ * array pointers (C)                             pointers
+ * pointers in functions 2                        pointers
+ * pointers in functions                          pointers
  * pointer arithmetic                             pointers
  * memory allocation                              memory / array pointers
  * pointer dereferencing                          pointers
@@ -53,6 +58,129 @@ NOTE2: most recent to least recent going down the list
 
 //next
 //
+//class example ch13
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Account{
+private:
+    string name;
+    double balance;
+public:
+    void set_balance(double bal) {balance = bal;}
+    double get_balance() {return balance;}
+    void set_name(string n);
+    string get_name();
+    bool deposit(double amount);
+    bool withdraw(double amount);
+
+};
+
+int main(){
+    return 0;
+}
+
+// CLASS BASICS--------------------------------------------------------
+/*
+//class example ch13
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Player {
+public:
+    //attributes
+    string name {"Player"};
+    int health {0};
+    int xp {3};
+    //methods
+    void talk(string text) {cout<<name<<" says "<<text<<endl;}
+    bool is_dead();
+};
+class Account{
+public:
+    //attributes
+    string name {"Account"};
+    double balance {0.0};
+    //methods
+    bool deposit(double bal) {balance += bal; cout<<"deposit"<<endl;}
+    bool withdraw(double bal) {balance -= bal; cout<<"withdraw"<<endl;}
+};
+
+int main(){
+    Player kiki;
+    kiki.name = "kiki";
+    kiki.health = 100;
+    kiki.xp = 12;
+    kiki.talk("hello");
+
+    Player *enemy = new Player;
+    (*enemy).name = "enemy";
+    enemy->health = 100;
+    enemy->xp = 15;
+    enemy->talk("die die die");
+
+    Account kiki_account;
+    kiki_account.balance = 5000.0;
+    kiki_account.deposit(1000.0);
+    kiki_account.withdraw(500.0);
+
+    return 0;
+}
+ */
+
+// ARRAY POINTERS-------------------------------------------------------
+/*
+//challenge ch12
+//from solution i didnt get it
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int * apply_all(const int *const arr1, size_t size1, const int *const arr2, size_t size2){
+    int *new_array {};
+    new_array = new int[size1 * size2];
+    int position (0);
+    for (size_t i(0); i < size2; i++){
+        for (size_t j(0); j < size1; j++){
+            new_array[position] = arr1[j] * arr2[i];
+            ++position;
+        }
+    }
+    return new_array;
+}
+void print(const int *const arr, size_t size){
+    cout<<"[ ";
+    for (size_t i(0); i<size; i++)
+        cout<<arr[i]<<' ';
+    cout<<" ]";
+    cout<<endl;
+}
+
+int main(){
+    int array1[] {1,2,3,4,5};
+    int array2[] {10,20,30};
+
+    cout<<"Array 1: ";
+    print(array1, 5);
+    cout<<"Array 2: ";
+    print(array2, 3);
+    int *results = apply_all(array1, 5, array2, 3);
+    cout<<"Result: ";
+    print(results, 15);
+    return 0;
+}
+ */
+
+// POINTERS IN FUNCTIONS 2-----------------------------------------------
+/*
 //class example ch12
 #include <iostream>
 #include <vector>
@@ -60,10 +188,78 @@ NOTE2: most recent to least recent going down the list
 
 using namespace std;
 
-int main(){
-    return 0;
+int *create_array(size_t, int);
+void display(const int *, size_t);
+
+int *create_array(size_t size, int init_value = 0){
+    int *new_storage {nullptr};
+    new_storage = new int[size];
+    for (size_t i(0); i< size; i++)
+        *(new_storage + i) = init_value; //set array to be size*int_value
+    return new_storage;
+}
+void display(const int *const array, size_t size){
+    for (size_t i(0); i < size; i++)
+        cout<<array[i]<<' '; //print the array
+    cout<<endl;
 }
 
+int main(){
+    int *my_array {nullptr};
+    size_t size;
+    int init_value {};
+
+    cout<<"how many integers to allocate:";
+    cin>>size;
+    cout<<"what value would you like to initalize to:";
+    cin>>init_value;
+    my_array = create_array(size, init_value);
+    cout<<"\n";
+    display(my_array, size);
+    delete [] my_array;
+
+    return 0;
+}
+*/
+
+// POINTERS IN FUNCTIONS-------------------------------------------------
+/*
+//class example ch12
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+void swap(int, int);
+void display(int, int);
+
+void swap(int *a, int *b){
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+void display(int *array, int sentinel){
+    while (*array != sentinel)
+        cout<<*array++<<' ';
+    cout<<endl;
+}
+
+int main(){
+    int x {100};
+    int y {200};
+    cout<<"x: "<<x<<endl; //100
+    cout<<"y: "<<y<<endl; //200
+    swap(&x, &y);
+    cout<<"x: "<<x<<endl; //200
+    cout<<"y: "<<y<<endl; //100
+
+    int scores[] {100,98,97, 85,-1};
+    display(scores, -1);
+
+    return 0;
+}
+*/
 
 // POINTER ARITHMETIC---------------------------------------------------
 /*
