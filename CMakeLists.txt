@@ -3,4 +3,4 @@ project(CPP_BreakCourse)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(CPP_BreakCourse main.cpp)
+add_executable(CPP_BreakCourse main.cpp Player.cpp Player.h)

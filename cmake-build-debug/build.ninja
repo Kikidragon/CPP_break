@@ -55,6 +55,12 @@ build CMakeFiles/CPP_BreakCourse.dir/main.cpp.obj: CXX_COMPILER__CPP_BreakCourse
   OBJECT_DIR = CMakeFiles\CPP_BreakCourse.dir
   OBJECT_FILE_DIR = CMakeFiles\CPP_BreakCourse.dir
 
+build CMakeFiles/CPP_BreakCourse.dir/Player.cpp.obj: CXX_COMPILER__CPP_BreakCourse_Debug C$:/Users/icarusvinci/CLionProjects/CPP_BreakCourse/Player.cpp || cmake_object_order_depends_target_CPP_BreakCourse
+  DEP_FILE = CMakeFiles\CPP_BreakCourse.dir\Player.cpp.obj.d
+  FLAGS = -g -std=gnu++20
+  OBJECT_DIR = CMakeFiles\CPP_BreakCourse.dir
+  OBJECT_FILE_DIR = CMakeFiles\CPP_BreakCourse.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target CPP_BreakCourse
@@ -63,7 +69,7 @@ build CMakeFiles/CPP_BreakCourse.dir/main.cpp.obj: CXX_COMPILER__CPP_BreakCourse
 #############################################
 # Link the executable CPP_BreakCourse.exe
 
-build CPP_BreakCourse.exe: CXX_EXECUTABLE_LINKER__CPP_BreakCourse_Debug CMakeFiles/CPP_BreakCourse.dir/main.cpp.obj
+build CPP_BreakCourse.exe: CXX_EXECUTABLE_LINKER__CPP_BreakCourse_Debug CMakeFiles/CPP_BreakCourse.dir/main.cpp.obj CMakeFiles/CPP_BreakCourse.dir/Player.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\CPP_BreakCourse.dir

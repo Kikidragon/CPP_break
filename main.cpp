@@ -3,7 +3,11 @@ created 12/23/2021 - c++ udemy online course - Claire DeVlieger
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
- * next
+ * external file classes                          oop - classes
+ * move constructors                              oop - classes
+ * constructor defaults                           oop - classes
+ * constructor destructor practice                oop - classes
+ * class defining                                 oop - classes
  * class basics                                   oop - classes
  * array pointers (C)                             pointers
  * pointers in functions 2                        pointers
@@ -56,8 +60,188 @@ NOTE2: most recent to least recent going down the list
  }
  */
 
-//next
-//
+// EXTERNAL FILE CLASSES--------------------------------------------------
+/*
+//class example ch13
+//includes files Player.cpp and Player.h
+#include <iostream>
+#include <vector>
+#include <string>
+#include "Player.h"
+
+using namespace std;
+
+void display_active_players(){
+    cout<<"Active players: "<<Player::get_num_players()<<endl;
+}
+
+int main(){
+    display_active_players(); //0
+    Player kiki{"Kiki"};
+    display_active_players(); //1
+    {
+        Player hero{"Hero"};
+        display_active_players(); //2
+    }
+    display_active_players(); //1
+    Player *enemy = new Player("Enemy", 100, 100);
+    display_active_players(); //2
+    delete enemy;
+    display_active_players();//1
+    return 0;
+}
+ */
+
+// MOVE CONSTRUCTORS---------------------------------------------------
+/*
+//class example ch13
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Move{
+private:
+    int *data;
+public:
+    void set_data_value(int d) {*data = d;}
+    int get_data_value() {return *data;}
+    Move(int d); //constructor
+    Move(const Move &source); //copy constructor
+    Move(Move &&source) noexcept; //move constructor
+    ~Move(); //destructor
+};
+//normal
+Move::Move(int d) {
+    data = new int;
+    *data = d;
+    cout<<"constructor for "<<d<< endl;
+}
+//copy
+Move::Move(const Move &source)
+:Move (*source.data){
+    cout<<"copy constructor deep copy for "<<*data<<endl;
+}
+//move
+Move::Move(Move &&source) noexcept
+:data(source.data){
+    source.data = nullptr;
+    cout<<"move constructor for "<<*data<<endl;
+}
+Move::~Move(){
+    if (data != nullptr){
+        cout<<"destructor for "<<*data<<endl;
+    }else{
+        cout<<"destructor for nullptr"<<endl;
+    }
+    delete data;
+}
+
+int main(){
+    vector<Move> vec;
+    vec.push_back(Move{10});
+    vec.push_back(Move{20});
+    vec.push_back(Move{30});
+    vec.push_back(Move{40});
+    vec.push_back(Move{50});
+    vec.push_back(Move{60});
+    vec.push_back(Move{70});
+    vec.push_back(Move{80});
+    return 0;
+}
+ */
+
+// CONSTRUCTOR DEFAULTS-------------------------------------------------
+/*
+//class example ch13
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Player{
+private:
+    std::string name;
+    int health;
+    int xp;
+public:
+    Player(std::string name_val = "None", int health_val = 0, int xp_val = 0);
+};
+Player::Player(std::string name_val, int health_val, int xp_val)
+:name{name_val}, health{health_val}, xp{xp_val}{
+    cout<<"constructor called"<<endl;
+    cout<<name<<' '<<health<<' '<<xp<<endl;
+}
+
+int main(){
+    Player empty;
+    Player kiki {"Kiki"};
+    Player hero {"Hero", 100};
+    Player villain {"Villain", 100, 55};
+    return 0;
+}
+*/
+
+// CONSTRUCTOR DESTRUCTOR PRACTICE--------------------------------------
+/*
+//class example ch13
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Player{
+private:
+    std::string name;
+    int health;
+    int xp;
+public:
+    void set_name(std::string name1){
+        name = name1;
+    }
+    //overloaded constructors
+    Player(){
+        cout<<"no args called"<<endl;
+    }
+    Player(std::string name){
+        cout<<"string arg called"<<endl;
+    }
+    Player(std::string, int healt, int xp){
+        cout<<"3 arg called"<<endl;
+    }
+    ~Player(){
+        cout<<"destructor called for "<<name<<endl;
+    }
+};
+
+int main(){
+    {
+        Player slayer;
+        slayer.set_name("slayer");
+    }
+    {
+        Player kiki;
+        kiki.set_name("kiki");
+        Player hero;
+        hero.set_name("hero");
+        Player villain("villain",100,12);
+        villain.set_name("villain");
+    }
+    Player *enemy = new Player;
+    enemy->set_name("enemy");
+    Player *level_boss = new Player("level boss", 1000, 300);
+    level_boss->set_name("level boss");
+    delete enemy;
+    delete level_boss;
+    return 0;
+}
+*/
+
+// CLASS DEFINING-------------------------------------------------------
+/*
 //class example ch13
 #include <iostream>
 #include <vector>
@@ -72,16 +256,51 @@ private:
 public:
     void set_balance(double bal) {balance = bal;}
     double get_balance() {return balance;}
+    //defined below | , can be put in another file
     void set_name(string n);
     string get_name();
     bool deposit(double amount);
     bool withdraw(double amount);
-
 };
+void Account::set_name(string n){
+    name = n;
+}
+string Account::get_name() {
+    return name;
+}
+bool Account::deposit(double amount) {
+    balance += amount;
+    return true;
+}
+bool Account::withdraw(double amount) {
+    if (balance-amount >=0){
+        balance -= amount;
+        return true;
+    }else{
+        return false;
+    }
+}
 
 int main(){
+    Account kiki_account;
+    kiki_account.set_name("Kiki's account");
+    kiki_account.set_balance(1000.0);
+    if (kiki_account.deposit(200.0))
+        cout<<"deposit ok"<<endl;
+    else
+        cout<<"deposit not allowed"<<endl;
+    if (kiki_account.withdraw(500.0))
+        cout<<"withdraw ok"<<endl;
+    else
+        cout<<"not sufficient funds"<<endl;
+    if (kiki_account.withdraw(1500.0))
+        cout<<"withdraw ok"<<endl;
+    else
+        cout<<"not sufficient funds"<<endl;
+
     return 0;
 }
+ */
 
 // CLASS BASICS--------------------------------------------------------
 /*
