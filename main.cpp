@@ -3,6 +3,7 @@ created 12/23/2021 - c++ udemy online course - Claire DeVlieger
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
+ * movie tracker (C)                              classes - all
  * external file classes                          oop - classes
  * move constructors                              oop - classes
  * constructor defaults                           oop - classes
@@ -58,6 +59,84 @@ NOTE2: most recent to least recent going down the list
  int main(){
      return 0;
  }
+ */
+
+// MOVIE TRACKER---------------------------------------------------------
+/*
+//challenge ch13
+//from solution i didnt get it
+//it donesnt work i dont know why fix it later (157 video)
+#include <iostream>
+#include <vector>
+#include <string>
+#include "Movies.h"
+
+using namespace std;
+
+void increment_watched(Movies &movies, std::string name);
+void add_movie(Movies &movies, std::string name, std::string rating, int watched);
+
+void increment_watched(Movies &movies, std::string name){
+    if (movies.increment_watched(name)){
+        std::cout<<name<<" watch incremented"<<std::endl;
+    }else{
+        std::cout<<name<<" not found"<<std::endl;
+    }
+}
+void add_movie(Movies &movies, std::string name, std::string rating, int watched){
+    if (movies.add_movie(name,rating,watched)){
+        std::cout<<name<<" added"<<std::endl;
+    }else{
+        std::cout<<name<<" already exists"<<std::endl;
+    }
+}
+
+int main(){
+    Movies my_movies;
+    my_movies.display();
+    string name {};
+    string rating {};
+    int watched {};
+
+    char input {};
+    do{
+        cout<<"\nmenu:"<<endl;
+        cout<<"add movie: a"<<endl;
+        cout<<"view list: v"<<endl;
+        cout<<"increment times watched: t"<<endl;
+        cout<<"quit: q"<<endl;
+        cout<<"choice:";
+        cin>>input;
+        cout<<'\n';
+        switch (input){
+            case 'a':
+            case 'A':
+                cout<<"enter name of movie, rating, and times watched (separated by a space):";
+                cin>>name, rating, watched;
+                add_movie(my_movies, name, rating, watched);
+                break;
+            case 'v':
+            case 'V':
+                cout<<"displaying movies: "<<endl;
+                my_movies.display();
+                break;
+            case 't':
+            case 'T':
+                cout<<"enter title of movie:";
+                cin>>name;
+                increment_watched(my_movies, name);
+                break;
+            case 'q':
+            case 'Q':
+                cout<<"goodbye";
+                break;
+            default:
+                cout<<"invalid input please input again"<<endl;
+        }
+    }while (input != 'q' && input != 'Q');
+
+    return 0;
+}
  */
 
 // EXTERNAL FILE CLASSES--------------------------------------------------
