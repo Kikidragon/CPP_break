@@ -3,6 +3,11 @@ created 12/23/2021 - c++ udemy online course - Claire DeVlieger
 contents:            (C) : challenge
  PROGRAM NAME:____________________________________TOPIC:__________________
  * starter                                        (default for copying)
+ * next
+ * error handling class practice                  error handling
+ * error handling function practice               error handling
+ * catch 2 exceptions                             error handling
+ * divide by zero                                 error handling
  * movie tracker (C)                              classes - all
  * external file classes                          oop - classes
  * move constructors                              oop - classes
@@ -57,11 +62,180 @@ NOTE2: most recent to least recent going down the list
  using namespace std;
 
  int main(){
+     cout<<"Hello World!"<<endl;
      return 0;
  }
  */
 
-// MOVIE TRACKER---------------------------------------------------------
+//next
+//
+//class example
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    cout<<"Hello World!"<<endl;
+    return 0;
+}
+
+// ERROR HANDLING CLASS PRACTICE----------------------------------------
+/*
+//class example ch18
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+class DivideByZeroException{};
+class NegativeValueException{};
+
+double calculate_mpg(int miles, int gallons){
+    if (gallons == 0)
+        throw DivideByZeroException();
+    if (miles <0 || gallons <0)
+        throw NegativeValueException();
+    return static_cast<double>(miles)/gallons;
+}
+
+int main(){
+    int miles {};
+    int gallons {};
+    double miles_per_gallon {};
+
+    cout<<"enter miles driven:";
+    cin>>miles;
+    cout<<"enter gallons used:";
+    cin>>gallons;
+
+    try{
+        miles_per_gallon = calculate_mpg(miles, gallons);
+        cout<<"result:"<<miles_per_gallon<<endl;
+    } catch (const DivideByZeroException &ex){
+        cerr<<"sorry, cant divide by zero"<<endl;
+    } catch (const NegativeValueException &ex){
+        cerr<<"sorry, cant have negative parameters"<<endl;
+    }
+    cout<<"bye"<<endl;
+    return 0;
+}
+*/
+
+// ERROR HANDLING FUNCTION PRACTICE-------------------------------------
+/*
+//class example ch18
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+void func_c(){
+    cout<<"starting func_c"<<endl;
+    throw 100;
+    cout<<"ending func_c"<<endl;
+}
+void func_b(){
+    cout<<"starting func_b"<<endl;
+    try{
+        func_c();
+    }catch (int &ex) {
+        cout<<"caught error in main"<<endl;
+    }
+    cout<<"ending func_b"<<endl;
+}
+void func_a(){
+    cout<<"starting func_a"<<endl;
+    func_b();
+    cout<<"ending func_a"<<endl;
+}
+int main(){
+    cout<<"starting main"<<endl;
+    try{
+        func_a();
+    } catch (int &ex){
+        cout<<"caught error in main"<<endl;
+    }
+    cout<<"finishing main"<<endl;
+    return 0;
+}
+ */
+
+// CATCH 2 EXCEPTIONS---------------------------------------------------
+/*
+//class example ch18
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+double calculate_mpg(int miles, int gallons){
+    if (gallons == 0)
+        throw 0;
+    if (miles <0 || gallons <0)
+        throw string("negative value error");
+    return static_cast<double>(miles)/gallons;
+}
+
+int main(){
+    int miles {};
+    int gallons {};
+    double miles_per_gallon;
+
+    cout<<"enter miles driven:";
+    cin>>miles;
+    cout<<"enter gallons used:";
+    cin>>gallons;
+
+    try{
+        miles_per_gallon = calculate_mpg(miles, gallons);
+        cout<<"result"<<miles_per_gallon<<endl;
+    } catch (int &ex){ //reference to throw 0
+        cerr<<"tried to divide by zero"<<endl;
+    } catch (string &ex){ //reference to throw string
+        cerr<<ex<<endl;
+    }
+    cout<<"bye"<<endl;
+    return 0;
+}
+*/
+
+// DIVIDE BY ZERO--------------------------------------------------------
+/*
+//class example ch18
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main(){
+    int miles {};
+    int gallons {};
+    double miles_per_gallon;
+
+    cout<<"enter miles driven:";
+    cin>>miles;
+    cout<<"enter gallons used:";
+    cin>>gallons;
+
+    try{
+        if (gallons==0)
+        throw 0;
+        miles_per_gallon = static_cast<double>(miles)/gallons;
+        cout<<"result:"<<miles_per_gallon<<endl;
+    } catch (int &ex){
+        cerr<<"sorry you cant divide by zero"<<endl;
+    }
+    cout<<"bye"<<endl;
+    return 0;
+}
+*/
+
+// MOVIE TRACKER--------------------------------------------------------
 /*
 //challenge ch13
 //from solution i didnt get it
@@ -139,7 +313,7 @@ int main(){
 }
  */
 
-// EXTERNAL FILE CLASSES--------------------------------------------------
+// EXTERNAL FILE CLASSES------------------------------------------------
 /*
 //class example ch13
 //includes files Player.cpp and Player.h
@@ -171,7 +345,7 @@ int main(){
 }
  */
 
-// MOVE CONSTRUCTORS---------------------------------------------------
+// MOVE CONSTRUCTORS----------------------------------------------------
 /*
 //class example ch13
 #include <iostream>
@@ -381,7 +555,7 @@ int main(){
 }
  */
 
-// CLASS BASICS--------------------------------------------------------
+// CLASS BASICS---------------------------------------------------------
 /*
 //class example ch13
 #include <iostream>
@@ -477,7 +651,7 @@ int main(){
 }
  */
 
-// POINTERS IN FUNCTIONS 2-----------------------------------------------
+// POINTERS IN FUNCTIONS 2----------------------------------------------
 /*
 //class example ch12
 #include <iostream>
@@ -520,7 +694,7 @@ int main(){
 }
 */
 
-// POINTERS IN FUNCTIONS-------------------------------------------------
+// POINTERS IN FUNCTIONS------------------------------------------------
 /*
 //class example ch12
 #include <iostream>
@@ -696,7 +870,7 @@ int main(){
 }
 */
 
-// POINTERS PRACTICE-----------------------------------------------------
+// POINTERS PRACTICE----------------------------------------------------
 /*
 //class example ch12
 #include <iostream>
@@ -742,7 +916,7 @@ int main(){
 }
 */
 
-// FUNCTIONS FULL MENU-------------------------------------------------
+// FUNCTIONS FULL MENU--------------------------------------------------
 /*
 //challenge ch11
 //make ch9 challenge but use functions (full menu)
